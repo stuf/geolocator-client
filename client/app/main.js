@@ -1,8 +1,10 @@
 define("app/main",
 	[
+		"jquery",
+		"app/location",
 		"app/map",
 		"app/conf/config"
-	], function (Map, Config) {
+	], function ($, Location, Map, Config) {
 
 	"use strict";
 
@@ -19,12 +21,15 @@ define("app/main",
 		}
 	};
 
-	var app = new App();
+	// Our global object for our stuff
+	window.geolocator = {};
 
-	// Init our map
-	var map = new Map();
+	var
+		app			= new App(),
+		location	= new Location(),
+		map			= new Map();
 
-	console.info(map, config);
+	console.info($, map, config);
 
 	return app;
 });
