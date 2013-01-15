@@ -11,25 +11,22 @@ define("app/main",
 	var config = Config;
 
 	function App (options) {
-		console.info(this);
-
+		this.init();
 	};
 
 	App.prototype = {
-		init: function () {
-
-		}
+		init: function () {}
 	};
 
-	// Our global object for our stuff
-	window.geolocator = {};
-
+	// First, let's build instantiate our things.
 	var
 		app			= new App(),
 		location	= new Location(),
 		map			= new Map();
 
 	console.info($, map, config);
+
+	map.init();
 
 	return app;
 });

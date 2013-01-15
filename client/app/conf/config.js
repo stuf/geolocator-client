@@ -4,7 +4,9 @@ define("app/conf/config", [], function () {
 	return {
 		map: {
 			apiKey: "AIzaSyAp4R-Oow9yB2QRVFPeH3IRSLe_C4e7iro",
-			useSensor: true
+			useSensor: true,
+
+			watchPosition: true
 		}
 	}
 });

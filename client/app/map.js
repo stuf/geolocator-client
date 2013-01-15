@@ -1,3 +1,11 @@
+/* map.js
+ *
+ * TODO:
+ * - How are we going to determine the first location of the map?
+ * - From where are we going to determine the location?
+ * - How are we going to keep monitoring it?
+ */
+
 define("app/map", [], function () {
 	"use strict";
 
@@ -12,9 +20,13 @@ define("app/map", [], function () {
 			map: null,
 			mapHolder: "map",
 			mapOptions: {
-				zoom: 8
+				zoom: 8,
+				center: new google.maps.LatLng(12, 12),
+				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 		};
+
+		console.info(this.config.mapOptions);
 
 		this.init();
 	};
