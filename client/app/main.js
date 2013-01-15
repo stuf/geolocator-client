@@ -8,25 +8,27 @@ define("app/main",
 
 	"use strict";
 
-	var config = Config;
-
 	function App (options) {
 		this.init();
 	};
 
 	App.prototype = {
-		init: function () {}
+		init: function () {
+			var
+				location	= new Location(),
+				map			= new Map();
+
+			location.init();
+
+			map.init();
+
+		}
 	};
 
 	// First, let's build instantiate our things.
-	var
-		app			= new App(),
-		location	= new Location(),
-		map			= new Map();
+	var app = new App();
 
-	console.info($, map, config);
-
-	map.init();
+	app.init();
 
 	return app;
 });
