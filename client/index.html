@@ -3,13 +3,13 @@
 <head>
     <title>Geolocator</title>
 
-    <script type="text/javascript">
-        window.geolocator = {};
-    </script>
-
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAp4R-Oow9yB2QRVFPeH3IRSLe_C4e7iro&sensor=true"></script>
     <script type="text/javascript" data-main="require.config.js" src="vendor/require.js"></script>
     <script type="text/javascript">
+        var APPNAME = "geolocator";
+        window.APPNAME = APPNAME;
+        window[APPNAME] = {};
+
         require(["app/main"], function (App) {
             App.init();
         });
