@@ -1,7 +1,7 @@
 define("app/location",
 	["app/conf/config"],
 	function (Config) {
-		
+
 	"use strict";
 
 	if(!"location" in window.geolocator) {
