@@ -1,4 +1,7 @@
-define("app/location", [], function () {
+define("app/location",
+	["app/conf/config"],
+	function (Config) {
+		
 	"use strict";
 
 	if(!"location" in window.geolocator) {
@@ -9,10 +12,18 @@ define("app/location", [], function () {
 
 	var Location = function () {
 
+		this.init();
 	};
 
 	Location.prototype = {
+		successHandler: function (position) {
 
+		},
+		failureHandler: function () {},
+		init: function () {
+			_location =
+				navigator.geolocation.watchPosition(this.successHandler, this.failureHandler())
+		}
 	};
 
 	return Location;
