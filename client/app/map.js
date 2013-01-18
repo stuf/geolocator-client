@@ -36,7 +36,6 @@ define("app/map", [], function () {
 			this.config.map =
 				new google.maps.Map(document.getElementById(this.config.mapHolder), this.config.mapOptions);
 
-
 		},
 
 		setLocation: function () {},

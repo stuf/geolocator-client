@@ -1,16 +1,20 @@
 define("app/location",
-	["app/conf/config"],
-	function (Config) {
+	[
+		"jquery",
+		"app/conf/config",
+		"app/models/locationModel"
+	],
+	function ($, Config, LocationModel) {
 
 	"use strict";
 
 	if(!"location" in window.geolocator) {
 		window.geolocator.location = {};
-
 		var _location = window.geolocator.location;
 	}
 
-	var Location = function () {
+	var Location = function (options) {
+		this.config = $.extend({}, options);
 
 		this.init();
 	};
