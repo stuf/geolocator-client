@@ -3,9 +3,9 @@ define("app/main",
 		"jquery",
 		"app/conf/config",
 		"app/location",
-		"app/events"
+		"app/globalEvents"
 	],
-	function ($, Config, Location, Events) {
+	function ($, Config, Location, GlobalEvents) {
 
 	"use strict";
 
@@ -24,6 +24,8 @@ define("app/main",
 	var app = new App();
 
 	app.init();
+
+	GlobalEvents.on("change:location", function () {});
 
 	return app;
 });

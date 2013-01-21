@@ -27,12 +27,12 @@ define("app/location",
 				console.info(">>> CHANGED", this);
 			}, window[APPNAME].currentLocation);
 		},
-		errorHandler: function (error) {
-			console.error("Geolocation error!; ", error);
+		errorHandler: function () {
+			console.error("Geolocation error!; ", this);
 		},
 		init: function () {
 			window._location =
-				navigator.geolocation.watchPosition(this.successHandler, this.errorHandler(), this.config.locatorOptions)
+				navigator.geolocation.watchPosition(this.successHandler, this.errorHandler, this.config.locatorOptions)
 		}
 	};
 
