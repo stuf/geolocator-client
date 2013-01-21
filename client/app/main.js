@@ -2,9 +2,10 @@ define("app/main",
 	[
 		"jquery",
 		"app/conf/config",
-		"app/location"
+		"app/location",
+		"app/events"
 	],
-	function ($, Config, Location) {
+	function ($, Config, Location, Events) {
 
 	"use strict";
 
@@ -23,6 +24,8 @@ define("app/main",
 	var app = new App();
 
 	app.init();
+
+
 
 	return app;
 });
