@@ -25,7 +25,13 @@ define("app/main",
 
 	app.init();
 
-	GlobalEvents.on("change:location", function () {});
+	window.events = {};
+
+	_.extend(window.events, Backbone.Events);
+
+	window.events.on("change:location", function () {
+		console.info("change:location triggered globally", this, arguments);
+	}, this);
 
 	return app;
 });

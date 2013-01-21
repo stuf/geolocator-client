@@ -24,12 +24,14 @@ define("app/location",
 			}
 
 			window[APPNAME].currentLocation.on("change", function () {
-				console.info(">>> CHANGED", this);
+				window.events.trigger("change:location");
 			}, window[APPNAME].currentLocation);
 		},
+
 		errorHandler: function () {
 			console.error("Geolocation error!; ", this);
 		},
+
 		init: function () {
 			window._location =
 				navigator.geolocation.watchPosition(this.successHandler, this.errorHandler, this.config.locatorOptions)
