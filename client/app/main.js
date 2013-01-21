@@ -25,7 +25,5 @@ define("app/main",
 
 	app.init();
 
-
-
 	return app;
 });

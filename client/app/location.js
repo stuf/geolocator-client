@@ -19,6 +19,13 @@ define("app/location",
 			if ( typeof (window[APPNAME].currentLocation) === "undefined" ) {
 				window[APPNAME].currentLocation = new CurrentLocationModel(position);
 			}
+			else {
+				window[APPNAME].currentLocation.set(position);
+			}
+
+			window[APPNAME].currentLocation.on("change", function () {
+				console.info(">>> CHANGED", this);
+			}, window[APPNAME].currentLocation);
 		},
 		errorHandler: function (error) {
 			console.error("Geolocation error!; ", error);
