@@ -25,13 +25,11 @@ define("app/main",
 
 	app.init();
 
-	window.events = {};
+	var events = {};
 
-	_.extend(window.events, Backbone.Events);
+	_.extend(events, Backbone.Events);
 
-	window.events.on("location:change", function () {
-		console.info("location:change triggered globally", this, arguments);
-	}, this);
+	console.info(APPNAME);
 
 	return app;
 });

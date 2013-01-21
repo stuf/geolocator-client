@@ -4,6 +4,10 @@ define("app/location",
 
 	"use strict";
 
+	if ( typeof ( APP.currentLocation ) === "undefined" ) {
+		APP.currentLocation = new CurrentLocationModel({});
+	}
+
 	var Location = function (options) {
 		this.config = $.extend({
 			locatorOptions: {
@@ -16,16 +20,7 @@ define("app/location",
 
 	Location.prototype = {
 		successHandler: function (position) {
-			if ( typeof (window[APPNAME].currentLocation) === "undefined" ) {
-				window[APPNAME].currentLocation = new CurrentLocationModel(position);
-			}
-			else {
-				window[APPNAME].currentLocation.set(position);
-			}
-
-			window[APPNAME].currentLocation.on("change", function () {
-				window.events.trigger("location:change");
-			}, window[APPNAME].currentLocation);
+			APP.currentLocation.set(position);
 		},
 
 		errorHandler: function () {
@@ -33,7 +28,7 @@ define("app/location",
 		},
 
 		init: function () {
-			window._location =
+			APP.location =
 				navigator.geolocation.watchPosition(this.successHandler, this.errorHandler, this.config.locatorOptions)
 		}
 	};

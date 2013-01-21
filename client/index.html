@@ -7,8 +7,8 @@
     <script type="text/javascript" data-main="require.config.js" src="vendor/require.js"></script>
     <script type="text/javascript">
         var APPNAME = "geolocator";
-        window.APPNAME = APPNAME;
         window[APPNAME] = {};
+        var APP = window[APPNAME];
 
         require(["app/main"], function (App) {
             App.init();
