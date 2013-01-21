@@ -1,32 +1,31 @@
 define("app/location",
-	[
-		"jquery",
-		"app/conf/config",
-		"app/models/locationModel"
-	],
-	function ($, Config, LocationModel) {
+	[ "jquery", "app/conf/config", "app/models/currentLocationModel" ],
+	function ($, Config, CurrentLocationModel) {
 
 	"use strict";
 
-	if(!"location" in window.geolocator) {
-		window.geolocator.location = {};
-		var _location = window.geolocator.location;
-	}
-
 	var Location = function (options) {
-		this.config = $.extend({}, options);
+		this.config = $.extend({
+			locatorOptions: {
+				enableHighAccuracy: true
+			}
+		}, options);
 
 		this.init();
 	};
 
 	Location.prototype = {
 		successHandler: function (position) {
-
+			if ( typeof (window[APPNAME].currentLocation) === "undefined" ) {
+				window[APPNAME].currentLocation = new CurrentLocationModel(position);
+			}
 		},
-		failureHandler: function () {},
+		errorHandler: function (error) {
+			console.error("Geolocation error!; ", error);
+		},
 		init: function () {
-			_location =
-				navigator.geolocation.watchPosition(this.successHandler, this.failureHandler())
+			window._location =
+				navigator.geolocation.watchPosition(this.successHandler, this.errorHandler(), this.config.locatorOptions)
 		}
 	};
 
