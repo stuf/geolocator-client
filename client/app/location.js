@@ -24,7 +24,7 @@ define("app/location",
 			}
 
 			window[APPNAME].currentLocation.on("change", function () {
-				window.events.trigger("change:location");
+				window.events.trigger("location:change");
 			}, window[APPNAME].currentLocation);
 		},
 

@@ -29,8 +29,8 @@ define("app/main",
 
 	_.extend(window.events, Backbone.Events);
 
-	window.events.on("change:location", function () {
-		console.info("change:location triggered globally", this, arguments);
+	window.events.on("location:change", function () {
+		console.info("location:change triggered globally", this, arguments);
 	}, this);
 
 	return app;
