@@ -25,11 +25,5 @@ define("app/main",
 
 	app.init();
 
-	var events = {};
-
-	_.extend(events, Backbone.Events);
-
-	console.info(APPNAME);
-
 	return app;
 });

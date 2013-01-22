@@ -1,12 +1,8 @@
 define("app/location",
-	[ "jquery", "app/conf/config", "app/models/currentLocationModel" ],
-	function ($, Config, CurrentLocationModel) {
+	[ "jquery", "app/conf/config", "app/models/currentLocation" ],
+	function ($, Config, CurrentLocation) {
 
 	"use strict";
-
-	if ( typeof ( APP.currentLocation ) === "undefined" ) {
-		APP.currentLocation = new CurrentLocationModel({});
-	}
 
 	var Location = function (options) {
 		this.config = $.extend({
@@ -20,7 +16,7 @@ define("app/location",
 
 	Location.prototype = {
 		successHandler: function (position) {
-			APP.currentLocation.set(position);
+			CurrentLocation.set(position);
 		},
 
 		errorHandler: function () {
