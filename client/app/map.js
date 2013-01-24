@@ -6,7 +6,10 @@
  * - How are we going to keep monitoring it?
  */
 
-define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
+define("app/map",
+	[ "app/models/currentLocation", "app/conf/config" ],
+	function (CurrentLocation, Config) {
+
 	"use strict";
 
 	var Map = function (options) {
@@ -35,26 +38,21 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 		},
 
 		updateMap: function (position) {
-			this.map.setCenter(new google.maps.LatLng(position.latitude, position.longitude));
+			if ( Config.location.minimumAccuracy < position.accuracy ) {
+				this.map.setCenter(new google.maps.LatLng(position.latitude, position.longitude));
 
-			if ( !this.marker ) {
-				this.marker = new google.maps.Marker({
-					map: this.map,
-					visible: true
-				});
-			}
+				if ( !this.marker ) {
+					this.marker = new google.maps.Marker({
+						map: this.map,
+						visible: true
+					});
+				}
 
-			this.marker.setPosition(
-				new google.maps.LatLng(position.latitude, position.longitude));
-
-			if ( position.accuracy <= 50 ) {
-				this.map.setZoom(14);
+				this.marker.setPosition(
+					new google.maps.LatLng(position.latitude, position.longitude));
 			}
-			else if ( position.accuracy <= 25 ) {
-				this.map.setZoom(17);
-			}
-			else if ( position.accuracy <= 10 ) {
-				this.map.setZoom(19);
+			else {
+				console.warn("Waiting for better accuracy (" + position.accuracy + ")");
 			}
 		}
 	};
