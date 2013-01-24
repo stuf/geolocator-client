@@ -20,6 +20,7 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 		};
 
 		this.map = null;
+		this.marker = null;
 
 		this.init();
 	};
@@ -35,6 +36,26 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 
 		updateMap: function (position) {
 			this.map.setCenter(new google.maps.LatLng(position.latitude, position.longitude));
+
+			if ( !this.marker ) {
+				this.marker = new google.maps.Marker({
+					map: this.map,
+					visible: true
+				});
+			}
+
+			this.marker.setPosition(
+				new google.maps.LatLng(position.latitude, position.longitude));
+
+			if ( position.accuracy <= 50 ) {
+				this.map.setZoom(14);
+			}
+			else if ( position.accuracy <= 25 ) {
+				this.map.setZoom(17);
+			}
+			else if ( position.accuracy <= 10 ) {
+				this.map.setZoom(19);
+			}
 		}
 	};
 
