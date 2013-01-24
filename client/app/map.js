@@ -26,13 +26,13 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 			}
 		};
 
-		console.info(this.config.mapOptions);
-
 		this.init();
 	};
 
 	Map.prototype = {
 		init: function () {
+			console.info("Map:init");
+
 			this.config.map =
 				new google.maps.Map(document.getElementById(this.config.mapHolder), this.config.mapOptions);
 

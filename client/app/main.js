@@ -3,14 +3,16 @@ define("app/main",
 		"jquery",
 		"app/conf/config",
 		"app/location",
+		"app/map",
 		"app/globalEvents"
 	],
-	function ($, Config, Location, GlobalEvents) {
+	function ($, Config, Location, Map, GlobalEvents) {
 
 	"use strict";
 
 	function App () {
-		var location = new Location();
+		this.location = new Location();
+		this.map = new Map();
 
 		this.init();
 	};
