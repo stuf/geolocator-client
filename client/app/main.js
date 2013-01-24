@@ -4,10 +4,9 @@ define("app/main",
 		"app/conf/config",
 		"app/location",
 		"app/map",
-		"app/models/currentLocation",
-		"app/globalEvents"
+		"app/models/currentLocation"
 	],
-	function ($, Config, Location, Map, CurrentLocation, GlobalEvents) {
+	function ($, Config, Location, Map, CurrentLocation) {
 
 	"use strict";
 
