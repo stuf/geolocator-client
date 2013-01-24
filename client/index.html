@@ -11,8 +11,11 @@
         var APP = window[APPNAME];
 
         require(["app/main"], function (App) {
-            App.init();
+            var app = new App();
+
+            app.init();
         });
+
     </script>
 </head>
 <body>

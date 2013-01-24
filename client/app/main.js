@@ -4,9 +4,10 @@ define("app/main",
 		"app/conf/config",
 		"app/location",
 		"app/map",
+		"app/models/currentLocation",
 		"app/globalEvents"
 	],
-	function ($, Config, Location, Map, GlobalEvents) {
+	function ($, Config, Location, Map, CurrentLocation, GlobalEvents) {
 
 	"use strict";
 
@@ -15,17 +16,21 @@ define("app/main",
 		this.map = new Map();
 
 		this.init();
+		this.handleMap();
 	};
 
 	App.prototype = {
 		init: function () {
+		},
+
+		handleMap: function () {
+			// Attach our events for location etc.
+			// We can't attach these before the map has been instantiated.
+			CurrentLocation.on("change", function (position) {
+				this.map.updateMap(position.get("coords"));
+			}, this);
 		}
 	};
 
-	// First, let's build instantiate our things.
-	var app = new App();
-
-	app.init();
-
-	return app;
+	return App;
 });

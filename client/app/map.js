@@ -9,15 +9,8 @@
 define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 	"use strict";
 
-	if (!("map" in window.geolocator)) {
-		window.geolocator.map = {};
-
-		var _geolocator = window.geolocator;
-	}
-
 	var Map = function (options) {
 		this.config = {
-			map: null,
 			mapHolder: "map",
 			mapOptions: {
 				zoom: 8,
@@ -26,6 +19,8 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 			}
 		};
 
+		this.map = null;
+
 		this.init();
 	};
 
@@ -33,14 +28,14 @@ define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 		init: function () {
 			console.info("Map:init");
 
-			this.config.map =
+			this.map =
 				new google.maps.Map(document.getElementById(this.config.mapHolder), this.config.mapOptions);
 
 		},
 
-		setLocation: function () {},
-
-		update: function () {}
+		updateMap: function (position) {
+			this.map.setCenter(new google.maps.LatLng(position.latitude, position.longitude));
+		}
 	};
 
 	return Map;
