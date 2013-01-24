@@ -6,7 +6,7 @@
  * - How are we going to keep monitoring it?
  */
 
-define("app/map", [], function () {
+define("app/map", [ "app/models/currentLocation" ], function (CurrentLocation) {
 	"use strict";
 
 	if (!("map" in window.geolocator)) {
