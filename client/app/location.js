@@ -29,5 +29,8 @@ define("app/location",
 		}
 	};
 
+	// Attach events
+	CurrentLocation.on("change", function (a) {});
+
 	return Location;
 });

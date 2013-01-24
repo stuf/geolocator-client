@@ -1,8 +1,8 @@
-define("app/models/currentLocationModel",
+define("app/models/currentLocation",
 	["backbone"],
 	function (Backbone) {
-		var Location = Backbone.Model.extend({});
+		var currentLocation = Backbone.Model.extend({});
 
-		return Location;
+		return new currentLocation();
 	}
 );
